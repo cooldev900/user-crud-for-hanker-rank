@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserList() {
+function UserList({users, onEdit, onDelete}) {
     return (
         <section>
             <h3 className='p-3 text-center'>Users</h3>
@@ -22,25 +22,26 @@ function UserList() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    {users.length > 0 && users.map((user, index) => <tr key={index}>
                         <td>
-                            Lorem
+                            {user.firstName}
                         </td>
                         <td>
-                            Ipsum
+                            {user.lastName}
                         </td>
                         <td>
-                            1234567890
+                            {user.phone}
                         </td>
                         <td>
-                            <button type='button'>
+                            <button type='button' onClick={() => onEdit(index)}>
                                 Edit
                             </button>
-                            <button type='button'>
+                            <button type='button' onClick={() => onDelete(index)}>
                                 Delete
                             </button>
                         </td>
-                    </tr>
+                    </tr>)}
+                    
                 </tbody>
             </table>
         </section>
